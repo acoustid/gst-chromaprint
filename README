@@ -1,0 +1,21 @@
+WCHROMAPRINT GSTREAMER PLUG-IN
+------------------------------
+
+gst-chromaprint is a GStreamer plug-in for generating audio fingerprints using
+the Chromaprint library [1].
+
+The simplest way to use it is via the `gst-launch` application:
+
+$ gst-launch-0.10 -t filesrc location=/path/to/audio/file ! decodebin \
+	! audioconvert ! chromaprint duration=60 ! fakesink sync=0 \
+	| grep 'chromaprint fingerprint'
+
+This command will decode an audio file and calculate its fingerprint.
+
+See the examples/ directory for a sample Python script that uses
+GStreamer to generate Chromaprint audio fingerprints and look them
+up in the Acoustid database [2].
+
+[1] http://wiki.acoustid.org/wiki/Chromaprint
+[2] http://acoustid.org/
+
